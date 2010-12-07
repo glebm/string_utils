@@ -1,0 +1,8 @@
+StringUtils gem repo
+
+StringUtils is a library that allows various string manipulation
+
+Example usage:
+
+ * StringUtils.truncate("hello world", 10, "...") #=> "hello..."
+ * StringUtils.normalize_name "\302\240  Gran Via/Avda.de Asturias " #=> :Gran Via / Avda. de Asturias"
