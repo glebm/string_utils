@@ -2,7 +2,12 @@ StringUtils gem repo
 
 StringUtils is a library that allows various string manipulation
 
-Example usage:
+Usage:
 
- * StringUtils.truncate("hello world", 10, "...") #=> "hello..."
- * StringUtils.normalize_name "\302\240  Gran Via/Avda.de Asturias " #=> :Gran Via / Avda. de Asturias"
+    $ gem install string_utils
+
+In your project:
+
+    require 'string_utils'
+    StringUtils.truncate("hello world", 10, "...") #=> "hello..."
+    StringUtils.normalize_name "\302\240  Gran Via/Avda.de Asturias " #=> :Gran Via / Avda. de Asturias"
