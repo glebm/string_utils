@@ -22,7 +22,7 @@ Tested with:
   s.rubyforge_project = "string_utils"
 
   
-  s.add_dependency "activesupport", "> 2"
+  s.add_dependency "activesupport", ">= 2.3.5"
   s.add_dependency "i18n"
 
   s.add_development_dependency "rspec", ">= 2.0.0"
