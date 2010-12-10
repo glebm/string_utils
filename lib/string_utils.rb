@@ -53,7 +53,7 @@ module StringUtils
 
     if options[:titleize]
       value = value.titleize
-      value.gsub!(/#{WHITESPACE_MATCHER}(Of|And|A)#{WHITESPACE_MATCHER}/) { |m| " #{m.downcase} " }
+      value.gsub!(/#{WHITESPACE_MATCHER}(Of|And|A|An|The|To)#{WHITESPACE_MATCHER}/) { |m| "#{m.downcase}" }
     end
     value.to_s
   end

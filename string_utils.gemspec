@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.authors           = ["Gleb Mazovetskiy"]
   s.email             = ["glex.spb@gmail.com"]
-  s.homepage          = "http://github.com/glebm"
+  s.homepage          = "http://github.com/glebm/string_utils"
   s.summary           = %q{Provides useful string utils like "truncate to word"}
   s.description       = %q{Provides useful string utils like "truncate to word".
 Compatible with ruby >= 1.8. Benefits from active_support if available on ruby < 1.9.
