@@ -54,6 +54,9 @@ module StringUtils
     value.gsub!(/^[.,]/, '')
     value.gsub!(/[.,]$/, '')
 
+    # Remove quote pairs. Imperfect, but good enough
+    value.gsub!(/\A['"]+(.*)['"]+\z/, '\1')
+
     # "a ,a"  => "a, a"
     # "a,a"   => "a, a"
     # "a , a" => "a, a"

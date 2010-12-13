@@ -9,7 +9,7 @@ describe "StringUtils" do
     end
 
     it 'normalizes periods, commas and /' do
-      StringUtils.normalize_name("Av . Valle ,\302\240\302\240 Tetuan.Aqui ,a").should == "Av. Valle, Tetuan. Aqui, a"
+      StringUtils.normalize_name(" Av . Valle ,\302\240\302\240 Tetuan.Aqui ,a").should == "Av. Valle, Tetuan. Aqui, a"
     end
 
     it 'removes trailing and leading [,.]' do
@@ -18,6 +18,10 @@ describe "StringUtils" do
 
     it 'does not capitalize prepositions' do
       StringUtils.normalize_name("Tom AND Jerry", :titleize => true).should == "Tom and Jerry"
+    end
+
+    it 'removes trailing and leading quotes' do
+      StringUtils.normalize_name(%Q{"'I'm awesome"}).should == "I'm awesome"
     end
   end
 end
