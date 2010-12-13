@@ -4,11 +4,14 @@ if RUBY_VERSION < '1.9'
   require 'active_support/core_ext/string/multibyte'
 end
 
+require 'string_utils/transliteration'
 
-# StringUtils is a library that allows various string manipulation
+
+# StringUtils is a library that provides various handy string manipulation methods 
 # Example usage:
 #   * StringUtils.truncate("hello world", 10, "...") #=> "hello..."
 #   * StringUtils.normalize_name "\302\240  Gran Via/Avda.de Asturias " #=> :Gran Via / Avda. de Asturias"
+#   * StringUtils.urlify("waßer") #=> "wasser"
 module StringUtils
   extend self
 
@@ -18,6 +21,19 @@ module StringUtils
   NOT_WHITESPACE     = "[^\s#{NBSP}]"
   WHITESPACES        = /#{WHITESPACE_MATCHER}+/
 
+
+  # Converts a string to a nicely readable URL
+  # opts:
+  # :default_replacement -- string to use for unknown characters (Default: "")
+  # :whitespace_replacement     -- string to use to replace whitespace+ (Default: "-")  
+  def urlify(string, opts = {})
+    opts = {:whitespace_replacement => '-', :default_replacement => ""}.merge(opts)
+    string = string.gsub(WHITESPACES, opts[:whitespace_replacement])
+    string.strip!
+    string.gsub!(/[^\x00-\x7f]/u) { |char| TRANSLITERATIONS[char] || opts[:default_replacement] }
+    string.gsub!(/[^a-z0-9\-+_]/, opts[:default_replacement])
+    string
+  end
 
   # Normalizes whitespace
   # "a , a" => "a, a"
