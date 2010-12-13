@@ -118,9 +118,9 @@ module StringUtils
   # hooray!
   def mb_charify(text)
     if RUBY_VERSION >= '1.9'
-      text
+      text.dup
     elsif text.respond_to?(:mb_chars)
-      text.mb_chars
+      text.frozen? ? text.dup.mb_chars : text.mb_chars
     else
       raise "StringUtils: No unicode support for strings"
     end
