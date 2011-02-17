@@ -12,6 +12,7 @@ require 'string_utils/transliteration'
 #   * StringUtils.truncate("hello world", 10, "...") #=> "hello..."
 #   * StringUtils.normalize_name "\302\240  Gran Via/Avda.de Asturias " #=> :Gran Via / Avda. de Asturias"
 #   * StringUtils.urlify("waßer") #=> "wasser"
+#   * StringUtils.normalize_punctuation(" , a,,b ,") #=> "a, b"
 module StringUtils
   extend self
 
@@ -21,6 +22,19 @@ module StringUtils
   NOT_WHITESPACE     = "[^\s#{NBSP}]"
   WHITESPACES        = /#{WHITESPACE_MATCHER}+/
 
+  # Collapses spaces and commas
+  # Fixes spacing around the [,.;:]
+  # Removes trailing and leading commas
+  def normalize_punctuation(str)
+    s = str.dup
+    s.gsub! /\s+/, ' '
+    s.gsub! /\s,/, ','
+    s.gsub! /,+/ , ','
+    s.gsub! /^\s*,|,\s*$/, ''
+    s.gsub! /([,.;:])(\S)/, '\1 \2'
+    s.strip!
+    s
+  end
 
   # Converts a string to a nicely readable URL
   # opts:
