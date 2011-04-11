@@ -1,13 +1,14 @@
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 if RUBY_VERSION < '1.9'
   $KCODE = "UTF8" if $KCODE == "NONE"
   require 'active_support/core_ext/string/multibyte'
 end
 
+require 'active_support/core_ext/string/inflections'
 require 'string_utils/transliteration'
 
 
-# StringUtils is a library that provides various handy string manipulation methods 
+# StringUtils is a library that provides various handy string manipulation methods
 # Example usage:
 #   * StringUtils.truncate("hello world", 10, "...") #=> "hello..."
 #   * StringUtils.normalize_name "\302\240  Gran Via/Avda.de Asturias " #=> :Gran Via / Avda. de Asturias"
@@ -39,7 +40,7 @@ module StringUtils
   # Converts a string to a nicely readable URL
   # opts:
   # :default_replacement -- string to use for unknown characters (Default: "")
-  # :whitespace_replacement     -- string to use to replace whitespace+ (Default: "-")  
+  # :whitespace_replacement     -- string to use to replace whitespace+ (Default: "-")
   def urlify(string, opts = {})
     opts = {:whitespace_replacement => '-', :default_replacement => ""}.merge(opts)
     string = string.gsub(WHITESPACES, opts[:whitespace_replacement])

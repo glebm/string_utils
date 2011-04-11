@@ -1,7 +1,8 @@
+# encoding: utf-8
 module StringUtils
   # Based on transliteration table from i18n v0.5.0
   TRANSLITERATIONS = {
-      # Latin      
+      # Latin
       "À" =>"A", "Á"=>"A", "Â"=>"A", "Ã"=>"A", "Ä"=>"A", "Å"=>"A", "Æ"=>"AE",
       "Ç" =>"C", "È"=>"E", "É"=>"E", "Ê"=>"E", "Ë"=>"E", "Ì"=>"I", "Í"=>"I",
       "Î" =>"I", "Ï"=>"I", "Ð"=>"D", "Ñ"=>"N", "Ò"=>"O", "Ó"=>"O", "Ô"=>"O",
