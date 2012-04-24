@@ -24,15 +24,28 @@ module StringUtils
   WHITESPACES        = /#{WHITESPACE_MATCHER}+/
 
   # Collapses spaces and commas
-  # Fixes spacing around the [,.;:]
+  # Fixes spacing around the following characters:
+  #   ,.;:&
+  # Removes consecutive character dupes
   # Removes trailing and leading commas
   def normalize_punctuation(str)
     s = str.dup
     s.gsub! /\s+/, ' '
-    s.gsub! /\s,/, ','
-    s.gsub! /,+/ , ','
-    s.gsub! /^\s*,|,\s*$/, ''
+
+    s.gsub(/\s*&,/)
+
+    # Collapse w/s around all
+    s.gsub! /\s*([:,&.;])\s*/, '\1'
+    # Collapse consecutive dupes
+    s.gsub! /([.,;&:])+/ , '\1'
+
+    # Collapse leading and trailing punctuation
+    s.gsub! /^\s*[,:&;.]|[.;&:,]\s*$/, ''
+
+    # Add whitespaces
     s.gsub! /([,.;:])(\S)/, '\1 \2'
+    s.gsub! /(\S)([&])(\S)/, '\1 \2 \3'
+
     s.strip!
     s
   end
