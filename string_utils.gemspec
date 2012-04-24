@@ -9,15 +9,7 @@ Gem::Specification.new do |s|
   s.authors           = ["Gleb Mazovetskiy"]
   s.email             = ["glex.spb@gmail.com"]
   s.homepage          = "http://github.com/glebm/string_utils"
-  s.summary           = %q{Provides useful string utils like "truncate to word"}
-  s.description       = %q{Provides useful string utils like "truncate to word".
-Compatible with ruby >= 1.8. Benefits from active_support if available on ruby < 1.9.
-
-Tested with:
-
-  * ruby 1.8.7 (2010-04-19 patchlevel 253) [i686-linux], MBARI 0x8770, Ruby Enterprise Edition 2010.02
-  * 
-}
+  s.summary           = %q{Word truncation, punctuation normalization, and other useful string methods}
 
   s.rubyforge_project = "string_utils"
 
